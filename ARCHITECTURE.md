@@ -1,74 +1,31 @@
-# 🌳 Architektur — atc-bridge
+# ARCHITECTURE.md — atc-bridge
 
-> **Stand:** 2026-08-06 | **Version:** v1.0.0
-> **Teil von:** [A-TownChain Ökosystem](https://github.com/A-TownChain-Okosystems)
+> Copyright © Michael Wroblewski / A-TownChain-Okosystems. All Rights Reserved.
 
-## Beschreibung
-
-Cross-Chain Bridge-Infrastruktur. Lock/Mint/Burn/Release Contracts, Wrapped Tokens, Relayer-Manager, Message Bus, Validator-Set, Merkle/State Proofs, Token Registry, Fee Manager. ATC-91 Standard.
-
-## Metadaten
-
-| Metrik | Wert |
-|--------|------|
-| Layer | L9 — Interoperability |
-| Sprint | 4.0 |
-| ATC-Standards | ATC-91 |
-| Status | 🟢 AKTIV (Stubs) |
-| Dateien | 9 |
-| Zeilen | 242 |
-| .atc | 9 |
-
-## Komponenten-Übersicht
-
-| Komponente | Beschreibung | Status |
-|-----------|-------------|--------|
-| `contracts/bridge_contract.atc` | ATCLang v0.3 — Bridge Contract | 🔄 STUB |
-| `contracts/wrapped_token.atc` | ATCLang v0.3 — Wrapped Token Contract | 🔄 STUB |
-| `proofs/merkle_verifier.atc` | ATCLang v0.3 — Merkle Proof Verifier | 🔄 STUB |
-| `proofs/state_proof.atc` | ATCLang v0.3 — State Proof Verifier | 🔄 STUB |
-| `relayer/message_bus.atc` | ATCLang v0.3 — Cross-Chain Message Bus | 🔄 STUB |
-| `relayer/relayer_manager.atc` | ATCLang v0.3 — Relayer Manager | 🔄 STUB |
-| `tokens/fee_manager.atc` | ATCLang v0.3 — Fee Manager | 🔄 STUB |
-| `tokens/token_registry.atc` | ATCLang v0.3 — Token Registry | 🔄 STUB |
-| `validators/validator_set.atc` | ATCLang v0.3 — Bridge Validator Set | 🔄 STUB |
-
-## Verzeichnisstruktur
-
-```
-├── contracts/ (2 files, 68 lines)
-│   ├── bridge_contract.atc (41 lines)
-│   └── wrapped_token.atc (27 lines)
-├── proofs/ (2 files, 34 lines)
-│   ├── merkle_verifier.atc (17 lines)
-│   └── state_proof.atc (17 lines)
-├── relayer/ (2 files, 66 lines)
-│   ├── message_bus.atc (27 lines)
-│   └── relayer_manager.atc (39 lines)
-├── tokens/ (2 files, 45 lines)
-│   ├── fee_manager.atc (17 lines)
-│   └── token_registry.atc (28 lines)
-├── validators/ (1 files, 29 lines)
-│   └── validator_set.atc (29 lines)
-├── ARCHITECTURE.md (0 lines)
-└── README.md (28 lines)
+## File Tree
+```tree
+atc-bridge/
+├── Cargo.toml — Cross-chain bridge protocol crate manifest
+├── .gitignore — Git ignore configuration
+└── src/
+    ├── lib.rs — Cross-chain bridge orchestrator and main dispatch library
+    ├── ethereum.rs — Ethereum EVM light client, header validation, and Merkle proof parser
+    ├── polkadot.rs — Polkadot Substrate GRANDPA finality proof verifier
+    ├── cosmos.rs — Cosmos Tendermint light client and IBC payload processor
+    ├── relayer.rs — Multi-signature cross-chain event relayer and state proof forwarding
+    └── vault.rs — Multi-chain token locking, wrapping, and cross-chain mint/burn vault
 ```
 
-## Abhängigkeiten
+## Module Descriptions
+- src/lib.rs — Core cross-chain router orchestrating messages between disparate blockchains.
+- src/ethereum.rs — Validates Ethereum block headers, state roots, and transaction execution receipts.
+- src/polkadot.rs — Verifies Substrate headers, authority sets, and GRANDPA finality proofs.
+- src/cosmos.rs — Processes Tendermint block headers and validates Inter-Blockchain Communication (IBC) packets.
+- src/relayer.rs — Aggregates cryptographic signatures from relayer nodes before dispatching cross-chain actions.
+- src/vault.rs — Escrow vault contract logic securing locked collateral and managing wrapped tokens.
 
-- **ATCLang Stdlib** (atc-stdlib)
-- **ATC VM** (atc-vm)
-- **ATC Kernel** (atc-kernel)
+## Build System
+- Cargo.toml — Configured with `#![no_std]` for embedded contract runtime integration.
 
-## Roadmap
-
-| Phase | Aufgabe | Status |
-|-------|---------|--------|
-| Sprint 4.0 | Komponenten-Definition | ✅ |
-| Sprint 4.0 | Architektur-Baum | ✅ |
-| Sprint 4.0 | Stub-Dateien | ✅ |
-| Sprint 4.0.1 | Implementierung | 📋 |
-| Sprint 4.0.2 | Tests | 📋 |
-
----
-*Auto-generiert 2026-08-06 · Aurora*
+## Dependencies
+- parity-scale-codec — Compact binary encoding for blockchain headers and payloads.
