@@ -26,5 +26,9 @@ atc-bridge/
 └── tests/
 ```
 
+
+## Abhängigkeiten
+- [`A-TownChain-Okosystems/atc-blockchain`](https://github.com/A-TownChain-Okosystems/atc-blockchain)
+
 ## Copyright
 Copyright © Michael Wroblewski / A-TownChain-Okosystems. All Rights Reserved.
