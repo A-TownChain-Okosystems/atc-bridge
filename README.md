@@ -1,28 +1,30 @@
-# ATC Bridge — Cross-Chain Bridge
+# atc-bridge
 
-Cross-Chain Bridge-Infrastruktur. Lock/Mint/Burn/Release Contracts, Wrapped Tokens, Relayer-Manager, Message Bus, Validator-Set, Merkle/State Proofs, Token Registry, Fee Manager. ATC-91 Standard.
+Cross-Chain Bridge für das A-TownChain-Ökosystem.
 
-## Quick Facts
-
-| Metrik | Wert |
-|--------|------|
-| Layer | L9 — Interoperability |
-| Sprint | 4.0 |
-| ATC-Standards | ATC-91 |
-| .atc Dateien | 9 |
-| Zeilen | 242 |
+## Features (geplant)
+- Ethereum-Bridge (ERC-20 Token Transfers, Contract Calls)
+- Polkadot-Bridge (Parachain-Interoperabilität)
+- Cosmos-Bridge (IBC-Protocol)
+- Wrapped Assets (wATC, wETH, wDOT)
+- Bridge-Validator (Multi-Sig Relayer)
+- Liquidity-Pools (Bridge-LP)
+- Fee-Management & Slippage-Protection
 
 ## Architektur
+```
+atc-bridge/
+├── src/
+│   ├── lib.rs
+│   ├── chains/
+│   │   ├── ethereum.rs   # Ethereum-Bridge
+│   │   ├── polkadot.rs   # Polkadot-Bridge
+│   │   └── cosmos.rs     # Cosmos-Bridge
+│   ├── relayer/          # Bridge-Relayer
+│   └── vault.rs          # Asset-Vault
+├── Cargo.toml
+└── tests/
+```
 
-Siehe [ARCHITECTURE.md](ARCHITECTURE.md)
-
-## Komponenten
-
-Siehe [COMPONENT_PLAN.md](COMPONENT_PLAN.md)
-
-## Teil von
-
-[A-TownChain Ökosystem](https://github.com/A-TownChain-Okosystems)
-
----
-*Auto-generiert 2026-08-06 · Aurora*
+## Copyright
+Copyright © Michael Wroblewski / A-TownChain-Okosystems. All Rights Reserved.
